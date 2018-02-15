@@ -32,7 +32,7 @@ def print(students)
   i = 0
   while i < students.length
     student = students[i]
-    puts "#{student[:name]} (#{student[:cohort]} cohort), Hobby: #{student[:hobbies]}, Country: #{student[:country]}, Height: #{student[:height]}"
+    puts "#{student[:name]} (#{student[:cohort]} cohort), Hobby: #{student[:hobbies]}, Country: #{student[:country]}, Height: #{student[:height]}".center(75)
     i += 1
   end
 end
