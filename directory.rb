@@ -30,10 +30,9 @@ def print_header
 end
 def print(students)
   i = 0
-
   while i < students.length
     student = students[i]
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{student[:name]} (#{student[:cohort]} cohort), Hobby: #{student[:hobbies]}, Country: #{student[:country]}, Height: #{student[:height]}"
     i += 1
   end
 end
