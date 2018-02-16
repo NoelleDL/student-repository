@@ -7,19 +7,20 @@ def input_students
   students = []
   #get the first name
   name = gets.chomp
-  puts "What cohort?"
-  cohort = gets.chomp
-  if cohort == ""
-    cohort = "November"
-  end
-  puts "Please enter hobby"
-  hobbies = gets.chomp
-  puts "Please enter country"
-  country = gets.chomp
-  puts "Please enter height"
-  height = gets.chomp
+
   #while the name is not empty, repeat this code
   while !name.empty? do
+    puts "What cohort?"
+    cohort = gets.chomp
+    if cohort == ""
+      cohort = "November"
+    end
+    puts "Please enter hobby"
+    hobbies = gets.chomp
+    puts "Please enter country"
+    country = gets.chomp
+    puts "Please enter height"
+    height = gets.chomp
     #add the student hash to the array
     students << {name: name, cohort: cohort, hobbies: hobbies, country: country, height: height}
     puts "Now we have #{students.count} students"
@@ -34,12 +35,13 @@ def print_header
   puts "-------------"
 end
 def print(students)
-  i = 0
-  while i < students.length
-    student = students[i]
-    puts "#{student[:name]} (#{student[:cohort]} cohort), Hobby: #{student[:hobbies]}, Country: #{student[:country]}, Height: #{student[:height]}".center(75)
-    i += 1
+  cohorts = []
+  students.each do |student| cohorts << student[:cohort]
   end
+  cohorts.uniq.each { |month|
+    puts month
+    students.each { |student| puts student[:name] if student[:cohort].eql?(month) }
+  }
 end
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
