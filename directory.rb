@@ -7,6 +7,11 @@ def input_students
   students = []
   #get the first name
   name = gets.chomp
+  puts "What cohort?"
+  cohort = gets.chomp.to_sym
+  if cohort == nil
+    cohort = :november
+  end 
   puts "Please enter hobby"
   hobbies = gets.chomp
   puts "Please enter country"
