@@ -23,7 +23,11 @@ def input_students
     height = gets.chomp
     #add the student hash to the array
     students << {name: name, cohort: cohort, hobbies: hobbies, country: country, height: height}
-    puts "Now we have #{students.count} students"
+    if students.count > 1
+      puts "Now we have #{students.count} students"
+    else
+      puts "Now we have #{students.count} student"
+    end 
     #get another name from the user
     name = gets.chomp
   end
