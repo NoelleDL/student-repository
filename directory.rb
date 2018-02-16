@@ -15,14 +15,8 @@ def input_students
     if cohort == ""
       cohort = "November"
     end
-    puts "Please enter hobby"
-    hobbies = gets.chop
-    puts "Please enter country"
-    country = gets.chop
-    puts "Please enter height"
-    height = gets.chop
     #add the student hash to the array
-    students << {name: name, cohort: cohort, hobbies: hobbies, country: country, height: height}
+    students << {name: name, cohort: cohort}
     if students.count > 1
       puts "Now we have #{students.count} students"
     else
@@ -51,9 +45,29 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 #nothing happens until we call the methods
-students = input_students
-if students.count > 1
-  print_header
-  print(students)
-  print_footer(students)
+def interactive_menu
+  students = []
+  while true do
+    # 1. print the menu and ask the user for selection
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+    # 2. save input in variable
+    selection = gets.chomp
+    # 3. execute user selection
+    case selection
+    when "1"
+      students = input_students
+    when "2"
+      print_header
+      print(students)
+      print_footer(students)
+    when "9"
+      break 
+    else
+      puts "I don't know what you meant, try again"
+    end
+  end
 end
+
+interactive_menu
