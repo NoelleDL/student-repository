@@ -1,20 +1,20 @@
+
 @students = [] # an empty array accessible to all methods
 #put all students into an array
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   #get the first name
-  name = STDIN.gets.chop
-
+  name = STDIN.gets.chomp
   #while the name is not empty, repeat this code
   while !name.empty? do
     puts "What cohort?"
-    cohort = gets.chop
+    cohort = STDIN.gets.chomp
     if cohort == ""
       cohort = "November"
     end
     #add the student hash to the array
-    @students << {name: name, cohort: cohort}
+    add_name_cohort_to_array(name, cohort)
     if @students.count > 1
       puts "Now we have #{@students.count} students"
     else
@@ -26,6 +26,11 @@ def input_students
   # return the array of input_student
   @students
 end
+
+def add_name_cohort_to_array(name, cohort = "November")
+  @students << {name: name, cohort: cohort.to_sym}
+end
+
 def print_header
   puts "The students of Villains Academy"
   puts "-------------"
@@ -74,7 +79,7 @@ def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
+  add_name_cohort_to_array(name, cohort)
   end
   file.close
 end
