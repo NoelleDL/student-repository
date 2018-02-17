@@ -64,8 +64,10 @@ def show_students
 end
 
 def save_students
+  puts "Which file would you like to save to?"
+  filename = STDIN.gets.chomp
   # open file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(filename, "w")
   # iterate over array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -82,6 +84,15 @@ def load_students(filename = "students.csv")
   add_name_cohort_to_array(name, cohort)
   end
   file.close
+end
+
+def user_chooses_file
+  puts "Which file would you like to load?"
+  filename = STDIN.gets.chomp
+  if filename.empty? || !File.exists?(filename)
+    puts "Loading default file"
+    load_students(filename)
+  end
 end
 
 def try_load_students
@@ -109,7 +120,7 @@ def process(selection)
       save_students
       puts "Students saved!"
     when "4"
-      load_students
+      user_chooses_file
       puts "Students loaded!"
     when "9"
       exit
